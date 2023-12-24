@@ -1,10 +1,5 @@
 
 export default function Card({note, author}) {
-
-    function myColor() {
-        
-    }
-
     return (
     <div className="h-[200px] w-[200px] flex bg-jasmine p-2 pt-4">
         <h2 className=" h-[80%] text-[#514] font-light ">{note}</h2>
