@@ -1,14 +1,14 @@
 //add type to package.json to make possible the use of "import" instead of "require".
 import {PORT, mongoDBURL} from "./config.js";
 import { PostIt } from "./models/postItModel.js";
-
+import cors from "cors";
 import mongoose from "mongoose";
 import express, { response } from "express";
 const app = express();
 
 app.use(express.json());
 
-
+app.use(cors())
 
 app.post("/post", async (req, res) => {
     try {
@@ -30,16 +30,16 @@ app.post("/post", async (req, res) => {
 
 app.get("/:postRendered", async(req, res) => {
     try {
-        const limitReqPost = 30;
-        const {postRendered} = req.params;
+        const limitReqPost = 30; //vai ir no maximo 30
+        const {postRendered} = req.params; //quantos já foram renderizados
         const renderSkip = parseInt(postRendered);
 
-        const posts = await PostIt.find({}).skip(20).limit(limitReqPost);
+        const posts = await PostIt.find({}).skip(renderSkip).limit(limitReqPost);
 
         let sum = renderSkip+limitReqPost;
 
         return res.status(200).json({
-            skipValue: sum,
+            skipValue: limitReqPost, //para atualizar o valor dos renderizados
             data:posts,
         });
     } catch (err) {

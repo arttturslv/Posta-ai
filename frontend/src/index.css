@@ -34,3 +34,20 @@ h1, h2 {
   scale: 1.3;
   z-index: 5;
 }
+
+.pulse {
+  border: 4px solid;
+  animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    border-color: red;
+  }
+  50% {
+    border-color: #210f04;
+  }
+  100% {
+    border-color: red;
+  }
+}
