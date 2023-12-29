@@ -47,7 +47,7 @@ function App() {
     const [postRenderizados, setPostRenderizados] = useState(0);
 
     async function receber() {
-      fetch(`http://localhost:3001/${postRenderizados}`, {
+      fetch(`https://poste-ai.vercel.app/${postRenderizados}`, {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8"
@@ -67,7 +67,7 @@ function App() {
 
 
     async function postar(message, author) {
-      fetch('http://localhost:3001/post', {
+      fetch('https://poste-ai.vercel.app/post', {
         method: "POST",
         body: JSON.stringify({
           note: message,
