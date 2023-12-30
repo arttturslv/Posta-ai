@@ -88,8 +88,7 @@ function App() {
       });
     }
 
-  const [cards, setCards] = useState([
-  ]);
+  const [cards, setCards] = useState(null);
 
   return (
     <div className="h-screen w-full ">
@@ -118,14 +117,23 @@ function App() {
           </div>
         </div>
         <div id='Panel' className='flex h-[500px] gap-6 flex-wrap max-w-[1300px] pt-[5rem] justify-center'>
-            {cards.map((card, index) => (
+            {cards==null ?  
+            <span>
+              <span className=' animate-bounce h-10 flex flex-col items-center gap-2'>  
+                <span className='animate-spin w-5 h-5 bg-jasmine'></span>
+              </span>
+              <h5 className=' font-semibold '>Carregando...</h5>
+            </span>
+            :
+            cards.map((card, index) => (
               <Card
                 key={index}
                 note={card.note}
                 author={card.author}
                 color={changeColor()}
                 />
-            ))}
+            )) 
+            }
         </div>
     </div>
     </div>
