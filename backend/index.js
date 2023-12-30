@@ -60,3 +60,5 @@ app.get('/', (req, res) => {
     console.log(req);
     res.status(201).send('Hello brasil!🏳')
 });
+
+export default app;
