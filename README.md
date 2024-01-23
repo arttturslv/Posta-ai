@@ -1,4 +1,4 @@
-<h1> Poste aí: Aplicação Web com MongoDB e Tailwind CSS</h1> 
+<h1> Posta aí: Aplicação Web com MongoDB e Tailwind CSS</h1> 
 
 ![postit (1)](https://github.com/arttturslv/Poste-ai/assets/115251355/933b9c2d-d6d3-44aa-bbe7-2a4b95d8ab9a)
 
