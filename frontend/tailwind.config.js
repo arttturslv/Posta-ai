@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {boxShadow: {
+      '3xl': '5px 3px 4px 0px rgba(0,0,0,0.25)',
+      '4xl': '4px 4px 11px 0px rgba(0,0,0,0.3)',
+      '5xl': 'inset -10px -10px 15px 0px rgba(0,0,0,0.15)',
+    }},
     colors: {
       transparent: 'transparent',
       current: 'currentColor',

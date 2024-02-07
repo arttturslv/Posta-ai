@@ -1,7 +1,12 @@
 import './index.css'
 import Card from './components/Card';
+import Forma from './components/Forma';
+import Quadro from './components/Quadro';
+
 import { useState } from 'react';
 import { useEffect } from 'react';
+import desenhar from './assets/desenhar.svg';
+import escrever from './assets/escrever.svg';
 
 
 function App() {
@@ -13,6 +18,11 @@ function App() {
     jasmine: '#EECF6D',
     lightgreen: '#aceb98',
     tomato: '#f15946',
+    a1: '#62804D',
+    a2: '#D04646',
+    a3: '#E46746',
+    a4: '#61788A',
+    a5: '#D4874D',
   };
   
   function changeColor() {
@@ -27,25 +37,8 @@ function App() {
   const message = document.getElementById('Message');
   
 
-  function onSend(e) {
-
-    e.preventDefault();
-    const note = message.value;
+   const [postRenderizados, setPostRenderizados] = useState(0);
     
-    if(note==null || note.length<1 || note.length>120) {
-      message.classList.add('pulse');
-    } else {
-      postar(note, author.value);
-    }
-  }
-
-    function handleChange() {
-      author.classList.remove('pulse');
-      message.classList.remove('pulse');
-    }
-
-    const [postRenderizados, setPostRenderizados] = useState(0);
-
     async function receber() {
       fetch(`https://poste-ai.vercel.app/${postRenderizados}`, {
         method: "GET",
@@ -57,7 +50,6 @@ function App() {
 
         setCards(json.data)
         setPostRenderizados(postRenderizados+json.skipValue);
-
       });
     }
 
@@ -66,56 +58,50 @@ function App() {
     },[])
 
 
-    async function postar(message, author) {
-      fetch('https://poste-ai.vercel.app/post', {
-        method: "POST",
-        body: JSON.stringify({
-          note: message,
-          author: author
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        } 
-      }).then((response) => response.json())
-      .then((json) => { 
-        
-        setCards((prevCards) => [
-          ...prevCards, {
-            note: json.note, author:json.author
-          }
-        ])
-
-      });
+    function toggleForms() {
+      document.getElementById('blur').style.display = 'flex';
     }
 
   const [cards, setCards] = useState(null);
 
   return (
     <div className="h-screen w-full ">
-          <div className="flex flex-col gap-3 items-center ">
+          <div className="flex flex-col gap-3 items-center pb-8 ">
 
-        <div className='flex items-center h-[300px] justify-around flex-col px-3'>
-          <h1 className="sm:text-[5vw] text-[2rem] xl:text-[6rem] text-center text-[#ffff] font-bold pt-10 my-5">
-            Posta aí!
-          </h1>
-          <div>
-
-            <form className='block gap-5 items-end  sm:flex'>
-              <div>
-                <label htmlFor="mensagem" className="text-sm font-medium ">Mensagem</label>
-                <input onChange={handleChange} id="Message" type="text" maxLength={120} className=" shadow-inner disabled:bg-slate-50 invalid:border-pink-500 w-full p-4 ps-10 text-sm placeholder-[#6f6363] text-seal-brown font-medium border  rounded-lg bg-jasmine" placeholder="Eae galera, como vocês estão?" required></input>
-              </div>
-
-              <div>
-                <label htmlFor="mensagem" className="text-sm font-medium ">Autor</label>
-                <input onChange={handleChange} id="Author" type="text" maxLength={14} className="w-full shadow-inner p-4 ps-10 text-sm placeholder-[#6f6363] text-seal-brown font-medium border rounded-lg bg-jasmine" placeholder="Artur" ></input>
-              </div>
-
-              <button type="submit" onClick={(e) => onSend(e)} className='mt-6 h-[55px] sm:w-auto w-[100%] self-center px-4 rounded-lg text-sm text-seal-brown border-2 font-medium border-[#ffff] bg-jasmine hover:bg-[#553029] hover:text-[#fff]'>Colar</button>
-            </form>
-
+        <div className='flex items-center justify-around flex-col md:py-8'>
+          {/** tab verde */}
+          <div className='w-[100vw] md:w-[620px] h-[200px] flex justify-center bg-[#62804D] shadow-4xl mb-5 md:mt-5 z-20'>
+            <span className='w-[55px] h-[55px] absolute my-2 ' >
+              <div className='w-[55px] h-[55px] rounded-full absolute bg-[#D12C2C] shadow-3xl'></div>
+              <div className='w-[35px] h-[35px] rounded-full absolute bg-[#CE4040] left-[3px] top-[5px] shadow-4xl'></div>
+              <div className='w-[35px] h-[35px] rounded-full absolute bg-[#CE4040] left-[3px] top-[5px] shadow-4xl'></div>
+            </span>
+            <h1 className=" text-[100px] text-center text-[#ffff] pt-10 my-5">
+              Posta aí!
+            </h1>          
           </div>
+          
+          {/** tab escolhas */}
+
+          <div className=' flex justify-center flex-col'> 
+            <h3 className='text-[52px] text-center'>Faça sua escolha:</h3>
+            <span className='flex flex-row pl-5'>
+              <img onClick={toggleForms} src={escrever} alt="" className=' hover:-rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
+              <img onClick={toggleForms} src={desenhar} alt="" className=' hover:rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
+            </span>
+          </div>
+
+          {/*
+          
+          <Quadro></Quadro>
+               
+         */}
+          <Forma /> 
+     
+
+       
         </div>
+
         <div id='Panel' className='flex h-[500px] gap-6 flex-wrap max-w-[1300px] pt-[5rem] justify-center'>
             {cards==null ?  
             <span>
@@ -135,6 +121,7 @@ function App() {
             )) 
             }
         </div>
+
     </div>
     </div>
 
