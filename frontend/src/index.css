@@ -90,14 +90,7 @@ textarea {
   }
 }
 
+#form {
+  touch-action: none;
+}
 
-
-/**
-        tampa.style.top = '35%'
-        tampa.style.rotate = '0deg'
-        tampa.style.left = 'initial'
-
-        tampa.style.top = '20%'
-        tampa.style.rotate = '-20deg'
-        tampa.style.left = '10%'
-*/

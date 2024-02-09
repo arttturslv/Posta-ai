@@ -15,6 +15,7 @@ export default function Formulario({setCards, Quadro, setQuadro}) {
     function onExit() {
       setQuadro(false);
       document.body.style.overflow = 'auto'
+
     }
 
     async function postar(author, message, image) {

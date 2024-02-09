@@ -19,12 +19,12 @@ export default function Quadro ({trash, setTrashContent}){
     function salvar() {
       const canvas = document.querySelector('#draw');
       if (!canvas) return; // Verifica se o canvas foi encontrado
+      
       var imageCanvas = canvas.toDataURL();
       localStorage.setItem('img', imageCanvas);
     }
 
     function limpar() {
-      console.log("as")
       const canvas = document.querySelector('#draw');
       if (!canvas) return; // Verifica se o canvas foi encontrado
       const ctx = canvas.getContext('2d');
@@ -48,7 +48,6 @@ export default function Quadro ({trash, setTrashContent}){
         canvas.addEventListener("mousemove", draw);
         canvas.addEventListener("mousedown", (e) => {
             isDrawing = true;
-            console.log(isDrawing);
             [lastX, lastY] = [e.offsetX, e.offsetY];
           });
         canvas.addEventListener("mouseup", (e) => {
@@ -59,8 +58,35 @@ export default function Quadro ({trash, setTrashContent}){
           isDrawing = false;
           });
           
+          canvas.addEventListener("pointermove", drawTouch);
+          canvas.addEventListener("pointerdown", (e) => {      
+              isDrawing = true;
+              [lastX, lastY] = [e.offsetX, e.offsetY];
+            });
+          canvas.addEventListener("pointerup", (e) => {
+            isDrawing = false;
+            salvar();
+            });
+          canvas.addEventListener("pointerleave", () => {
+            isDrawing = false;
+            });
+            
+
         function draw(e) {
             if(isDrawing == false) return;
+
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(e.offsetX, e.offsetY);
+            lastX = e.offsetX;
+            lastY = e.offsetY;
+            ctx.stroke();
+          }
+
+          function drawTouch(e) {
+            if(isDrawing == false) return;
+
+            console.log(e)
 
             ctx.beginPath();
             ctx.moveTo(lastX, lastY);
@@ -76,7 +102,7 @@ export default function Quadro ({trash, setTrashContent}){
     return (
     <div className="w-[90vw] z-50 h-[90vw] sm:h-[500px] max-w-[500px] ">
         <canvas
-        className=" absolute z-10 bg-[#c8e087]"
+        className=" absolute z-10 bg-[#8CCBAD]"
         id="draw"
       >
       </canvas>
