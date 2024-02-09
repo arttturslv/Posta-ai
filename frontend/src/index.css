@@ -92,7 +92,7 @@ textarea {
 
 .cardo:hover div  {
   animation: up 400ms ease-out;
-  top: -30%;
+  top: -25%;
   z-index: -1;
 }
 
@@ -101,8 +101,6 @@ textarea {
 }
 
 .share {
-  display: flex;
-  justify-content: center;
   z-index: -10000;
 }
 
@@ -111,18 +109,7 @@ textarea {
     top: 0%;
   } 
   to {
-    top: -30%;
+    top: -25%;
   }  
 
 }
-
-
-/**
-        tampa.style.top = '35%'
-        tampa.style.rotate = '0deg'
-        tampa.style.left = 'initial'
-
-        tampa.style.top = '20%'
-        tampa.style.rotate = '-20deg'
-        tampa.style.left = '10%'
-*/

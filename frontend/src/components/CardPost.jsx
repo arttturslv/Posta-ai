@@ -1,23 +1,62 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import shareSVG from '../assets/share.svg'
+import icon from '../assets/pageIcon.svg'
 
-export default function CardPost({note, author, image, color, id}) {
+export default function CardPost({note, author, image, color}) {
 
-    useEffect(() => {
-        const doc =  document.getElementById(id);
-        if(!doc) return;
-        doc.style.display = 'none';
-
-    }, [id])
-
-
-    function share () {
+    function share(e) {
+        const title = "Posta Aí!";
+        const text = e.target.innerText;
+        const url = 'poste-ai-front.vercel.app/';
         
+        if(!e.target.src) {
+            createBlob(e.target.src)
+        } else {
+            sharing(title, text, url, icon)
+        }
+        async function createBlob(base64) {
+            let res =    await fetch(base64)
+            const myBlob = await res.blob()
+
+            sharing(title, text, url, myBlob)   
+        }
+    }
+
+    function sharing(title, text, url, myBlob) {
+        if (navigator.share) {
+            navigator.share({
+                title: title,
+                text: text,
+                url: url,
+                file: myBlob
+            })
+            .then(() => console.log("Compartilhado com sucesso!"))
+            .catch((error) => console.log('Erro:', error));
+        } else {
+            console.log('API não suportada.');
+            navigator.clipboard.writeText("Acesse o Posta Aí! ->"+url);
+        }
+    }
+    
+    function handleClick(e) {
+        if(wannaShare) {
+            share(e);
+            isWannaShare(false);
+        } else {
+            isWannaShare(true);
+        }
+    }
+
+    const [wannaShare, isWannaShare] = useState(false);
+
+    function handleHover() {
+        isWannaShare(true)
     }
 
     return (
-    <div  className='cardo h-[200px] w-[200px] cursor-pointer'>
-        <div className="share absolute w-[200px] pointer-events-none ">
-            <img className="w-10" src="https://static-00.iconduck.com/assets.00/share-icon-512x478-pbc2yd90.png" alt="" srcset="" />
+    <div onClick={handleClick} onMouseEnter={handleHover} className='cardo  h-[200px] w-[200px] cursor-pointer'>
+        <div className="share absolute w-[200px] flex-col flex items-center text-center pointer-events-none ">
+            <img className="w-10" src={shareSVG} alt="" />
         </div>
 
         <div className={' h-[200px] w-[200px] text-[#2D2A2A] gap-2 flex flex-col break-words shadow-2xl px-2 pt-2 '} style={{backgroundColor: color}}>
