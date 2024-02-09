@@ -67,7 +67,7 @@ function App() {
   }
 
   return (
-    <div className="h-screen w-full flex items-center flex-col ">
+    <div className=" w-full h-[600px] flex items-center flex-col ">
 
         <div className='flex items-center flex-col md:py-8'>
 
@@ -115,6 +115,7 @@ function App() {
                 key={card.index}
                 image={card.image}
                 color={changeColor()}
+                id={card.index}
                 />
             )) 
             }

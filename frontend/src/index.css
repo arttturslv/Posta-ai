@@ -90,6 +90,31 @@ textarea {
   }
 }
 
+.cardo:hover div  {
+  animation: up 400ms ease-out;
+  top: -30%;
+  z-index: -1;
+}
+
+.cardo {
+  z-index: 1;
+}
+
+.share {
+  display: flex;
+  justify-content: center;
+  z-index: -10000;
+}
+
+@keyframes up {
+  from {
+    top: 0%;
+  } 
+  to {
+    top: -30%;
+  }  
+
+}
 
 
 /**
