@@ -4,12 +4,16 @@ const PostItSchema = mongoose.Schema(
     {
         note: {
             type: String,
-            required: true,
+            required: false,
         },
         author: {
             type: String,
             required: false,
-        }
+        }, 
+        image: {
+            type: String,
+            required: false,
+        }, 
     }, 
     {
         timestamp: true,

@@ -12,15 +12,23 @@ app.use(cors())
 
 app.post("/post", async (req, res) => {
     try {
-        if(!req.body.note) {
-            return res.status(400).send({message: 'Está faltando a mensagem.'})
+
+        if(req.body.image) {
+            console.log(req.body.image)
+        }
+        else if(!req.body.note) {
+            return res.status(400).send({message: 'Está faltando a mensagem'})
         }
 
         const newPostIt = {
             note: req.body.note,
-            author: req.body.author
+            author: req.body.author,
+            image: req.body.image
         };
         const post = await PostIt.create(newPostIt);
+        console.log("\n\n\n")
+        console.log(post.image)
+
         return res.status(201).send(post);
 
     } catch (err) {

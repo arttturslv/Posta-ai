@@ -49,14 +49,55 @@ textarea {
   animation: pulse 0.8s infinite;
 }
 
-@keyframes pulse {
+.trash {
+  animation: trash 300ms ease-in-out;
+}
+.trashBin {
+  background-color: crimson;
+}
+
+@keyframes trash {
   0% {
-    border-color: rgb(157, 55, 55);
+   color: #2D2A2A;
+    top: 0;
   }
   50% {
-    border-color: #210f04;
+    top: 100%;
   }
   100% {
-    border-color: rgb(157, 55, 55);
+    top: 0;  
   }
 }
+
+.tampaAnim {
+  animation: tampa 200ms ease-out ;
+  animation-iteration-count: 1;
+  top: 20%;  
+  rotate: -20deg;
+  left: 10%;
+}
+
+@keyframes tampa {
+  0% {
+    top: 35%;  
+    rotate: 0deg;
+    left: initial;
+  }
+  100% {
+    top: 20%;  
+    rotate: -20deg;
+    left: 10%;
+  }
+}
+
+
+
+/**
+        tampa.style.top = '35%'
+        tampa.style.rotate = '0deg'
+        tampa.style.left = 'initial'
+
+        tampa.style.top = '20%'
+        tampa.style.rotate = '-20deg'
+        tampa.style.left = '10%'
+*/

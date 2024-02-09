@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Input() {
+export default function Input({trash, setTrashContent}) {
     const [authorHolder, setAuthorHolder] = useState('');
     const [messageHolder, setMessageHolder] = useState('');
 
@@ -16,6 +16,19 @@ export default function Input() {
         setMessageHolder("Eae galera, tudo certo com vocês?");
     }, []);
     
+    useEffect(()=> {
+        limpar();
+        setTrashContent(false);    
+      }, [trash])
+  
+      function limpar() {
+        console.log("asda")
+        setAuthorHolder("Artur");
+        setMessageHolder("Eae galera, tudo certo com vocês?");
+        document.getElementById("Author").value = ""
+        document.getElementById("Message").value = ""
+    }
+
     return (
     <div className={'h-auto w-[90vw] max sm:w-[500px] md:w-[500px] relative px-10 py-5 text-[#2D2A2A] flex flex-col gap-1 shadow-2xl bg-[#DAC285] '}>
         <div> 

@@ -1,16 +1,16 @@
 import './index.css'
-import Card from './components/Card';
-import Forma from './components/Forma';
-import Quadro from './components/Quadro';
+import Card from './components/CardPost';
+import Forma from './components/Formulario';
+import Quadro from './components/FormularioDesenho';
+import imgChoiceDesenho from './assets/desenhar.svg';
+import imgChoiceEscrita from './assets/escrever.svg';
 
-import { useState } from 'react';
-import { useEffect } from 'react';
-import desenhar from './assets/desenhar.svg';
-import escrever from './assets/escrever.svg';
+import { useState, useEffect } from 'react';
+
 
 
 function App() {
-  
+
   const colors = {
     lightblue: '#9bbec7',
     salmonpink: '#FFA5AB',
@@ -33,10 +33,6 @@ function App() {
     return randomColor;
   };
 
-  const author = document.getElementById('Author');
-  const message = document.getElementById('Message');
-  
-
    const [postRenderizados, setPostRenderizados] = useState(0);
     
     async function receber() {
@@ -57,9 +53,11 @@ function App() {
       receber();
     },[])
 
-
-    function toggleForms() {
-      document.getElementById('blur').style.display = 'flex';
+    function onExit() {
+      document.getElementById('form').style.display = 'flex';
+    }
+    function onExit1() {
+      document.getElementById('desenho').style.display = 'flex';
     }
 
   const [cards, setCards] = useState(null);
@@ -86,42 +84,38 @@ function App() {
           <div className=' flex justify-center flex-col'> 
             <h3 className='text-[52px] text-center'>Faça sua escolha:</h3>
             <span className='flex flex-row pl-5'>
-              <img onClick={toggleForms} src={escrever} alt="" className=' hover:-rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
-              <img onClick={toggleForms} src={desenhar} alt="" className=' hover:rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
+            <img onClick={onExit} src={imgChoiceEscrita} alt="" className=' hover:-rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
+            <img onClick={onExit1} src={imgChoiceDesenho} alt="" className=' hover:rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
             </span>
           </div>
 
-          {/*
-          
-          <Quadro></Quadro>
-               
-         */}
-          <Forma /> 
-     
 
+          <Quadro setCards={setCards}/>    
+          <Forma  setCards={setCards}/> 
+        
        
         </div>
 
-        <div id='Panel' className='flex h-[500px] gap-6 flex-wrap max-w-[1300px] pt-[5rem] justify-center'>
+        <div id='Panel' className='flex z-[-1] h-[500px] gap-6 flex-wrap max-w-[1300px] pt-[5rem] justify-center'>
             {cards==null ?  
             <span>
               <span className=' animate-bounce h-10 flex flex-col items-center gap-2'>  
-                <span className='animate-spin w-5 h-5 bg-jasmine'></span>
+                <span className='animate-spin w-10 h-10 bg-jasmine'></span>
               </span>
-              <h5 className=' font-semibold '>Carregando...</h5>
+              <h5 className=' text-[48px]'>Carregando...</h5>
             </span>
             :
             cards.map((card, index) => (
               <Card
-                key={index}
                 note={card.note}
                 author={card.author}
+                key={card.index}
+                image={card.image}
                 color={changeColor()}
                 />
             )) 
             }
         </div>
-
     </div>
     </div>
 
