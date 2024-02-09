@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Input({trash, setTrashContent}) {
+export default function Inputs({trash, setTrashContent}) {
     const [authorHolder, setAuthorHolder] = useState('');
     const [messageHolder, setMessageHolder] = useState('');
 
@@ -22,7 +22,6 @@ export default function Input({trash, setTrashContent}) {
       }, [trash])
   
       function limpar() {
-        console.log("asda")
         setAuthorHolder("Artur");
         setMessageHolder("Eae galera, tudo certo com vocês?");
         document.getElementById("Author").value = ""

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function Mesa ({trash, setTrashContent}){
+export default function Quadro ({trash, setTrashContent}){
 
     var isDrawing = false;
 
@@ -74,7 +74,7 @@ export default function Mesa ({trash, setTrashContent}){
     }, [])
 
     return (
-    <div className="w-[90vw] h-[500px] max-w-[500px] ">
+    <div className="w-[90vw] z-50 h-[90vw] sm:h-[500px] max-w-[500px] ">
         <canvas
         className=" absolute z-10 bg-[#c8e087]"
         id="draw"

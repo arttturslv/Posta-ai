@@ -1,13 +1,13 @@
 import './index.css'
-import Card from './components/CardPost';
-import Forma from './components/Formulario';
-import Quadro from './components/FormularioDesenho';
 import imgChoiceDesenho from './assets/desenhar.svg';
 import imgChoiceEscrita from './assets/escrever.svg';
 
+import CardPost from './components/CardPost';
+import Formulario from './components/Formulario';
+import Quadro from './components/Quadro';
+import Inputs from './components/Inputs';
+
 import { useState, useEffect } from 'react';
-
-
 
 function App() {
 
@@ -43,7 +43,6 @@ function App() {
         } 
       }).then((response) => response.json())
       .then((json) => { 
-
         setCards(json.data)
         setPostRenderizados(postRenderizados+json.skipValue);
       });
@@ -53,21 +52,25 @@ function App() {
       receber();
     },[])
 
-    function onExit() {
-      document.getElementById('form').style.display = 'flex';
-    }
-    function onExit1() {
-      document.getElementById('desenho').style.display = 'flex';
-    }
-
   const [cards, setCards] = useState(null);
+  
+  const [quadro, setQuadro] = useState(false);
+  const [inputs, setInputs] = useState(false);
+
+  function open(set) {
+    window.scrollTo({
+      top: 100,
+      behavior: 'smooth'
+    });
+    document.body.style.overflow = 'hidden'
+    set(true);
+  }
 
   return (
-    <div className="h-screen w-full ">
-          <div className="flex flex-col gap-3 items-center pb-8 ">
+    <div className="h-screen w-full flex items-center flex-col ">
 
-        <div className='flex items-center justify-around flex-col md:py-8'>
-          {/** tab verde */}
+        <div className='flex items-center flex-col md:py-8'>
+
           <div className='w-[100vw] md:w-[620px] h-[200px] flex justify-center bg-[#62804D] shadow-4xl mb-5 md:mt-5 z-20'>
             <span className='w-[55px] h-[55px] absolute my-2 ' >
               <div className='w-[55px] h-[55px] rounded-full absolute bg-[#D12C2C] shadow-3xl'></div>
@@ -79,21 +82,21 @@ function App() {
             </h1>          
           </div>
           
-          {/** tab escolhas */}
-
           <div className=' flex justify-center flex-col'> 
             <h3 className='text-[52px] text-center'>Faça sua escolha:</h3>
             <span className='flex flex-row pl-5'>
-            <img onClick={onExit} src={imgChoiceEscrita} alt="" className=' hover:-rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
-            <img onClick={onExit1} src={imgChoiceDesenho} alt="" className=' hover:rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
+            <img onClick={() => open(setInputs)} src={imgChoiceEscrita} alt="" className=' hover:-rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
+            <img onClick={() => open(setQuadro)} src={imgChoiceDesenho} alt="" className=' hover:rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
             </span>
           </div>
 
-
-          <Quadro setCards={setCards}/>    
-          <Forma  setCards={setCards}/> 
-        
-       
+              {
+            inputs?
+              <Formulario setCards={setCards} Quadro={Inputs} setQuadro={setInputs}/> 
+              : quadro? 
+              <Formulario setCards={setCards} Quadro={Quadro} setQuadro={setQuadro}/> 
+              : ""
+             }
         </div>
 
         <div id='Panel' className='flex z-[-1] h-[500px] gap-6 flex-wrap max-w-[1300px] pt-[5rem] justify-center'>
@@ -106,7 +109,7 @@ function App() {
             </span>
             :
             cards.map((card, index) => (
-              <Card
+              <CardPost
                 note={card.note}
                 author={card.author}
                 key={card.index}
@@ -115,8 +118,7 @@ function App() {
                 />
             )) 
             }
-        </div>
-    </div>
+      </div>
     </div>
 
   )

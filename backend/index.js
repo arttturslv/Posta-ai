@@ -13,11 +13,14 @@ app.use(cors())
 app.post("/post", async (req, res) => {
     try {
 
-        if(req.body.image) {
-            console.log(req.body.image)
+        if(req.body.image || req.body.note) {
+            console.log("Tudo certo")
         }
         else if(!req.body.note) {
             return res.status(400).send({message: 'Está faltando a mensagem'})
+        }
+        else if(!req.body.image) {
+            return res.status(400).send({message: 'Está faltando a imagem'})
         }
 
         const newPostIt = {
@@ -26,8 +29,6 @@ app.post("/post", async (req, res) => {
             image: req.body.image
         };
         const post = await PostIt.create(newPostIt);
-        console.log("\n\n\n")
-        console.log(post.image)
 
         return res.status(201).send(post);
 
