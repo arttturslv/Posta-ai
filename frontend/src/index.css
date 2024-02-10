@@ -94,3 +94,26 @@ textarea {
   touch-action: none;
 }
 
+.cardo:hover div  {
+  animation: up 400ms ease-out;
+  top: -25%;
+  z-index: -1;
+}
+
+.cardo {
+  z-index: 1;
+}
+
+.share {
+  z-index: -10000;
+}
+
+@keyframes up {
+  from {
+    top: 0%;
+  } 
+  to {
+    top: -25%;
+  }  
+
+}
