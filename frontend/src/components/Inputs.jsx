@@ -6,6 +6,8 @@ export default function Inputs({trash, setTrashContent}) {
 
     function handleChange(e) {
         localStorage.setItem(e.target.id, e.target.value);
+        localStorage.setItem('formulario', 'text');
+
 
         setAuthorHolder(localStorage.getItem('Author'));
         setMessageHolder(localStorage.getItem('Message'));

@@ -5,20 +5,28 @@ export default function Formulario({setCards, Quadro, setQuadro}) {
     const [trash, setTrashContent] = useState(false);
 
     function onSend() {
+      if(localStorage.getItem('formulario') == 'img') {
+        const author = null;
+        const message = null;
+        const image = localStorage.getItem('img');
+        postar(author, message, image);
+      } else {
         const author = localStorage.getItem('Author');
         const message = localStorage.getItem('Message');
-        const image = localStorage.getItem('img');
-
+        const image = null;
         postar(author, message, image);
-    }
+      }
+  }
+
 
     function onExit() {
       setQuadro(false);
       document.body.style.overflow = 'auto'
-
     }
 
     async function postar(author, message, image) {
+      onExit();
+
       fetch('http://localhost:3001/post', {
         method: "POST",
         body: JSON.stringify({

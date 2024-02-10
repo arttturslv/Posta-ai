@@ -10,6 +10,7 @@ import Inputs from './components/Inputs';
 import { useState, useEffect } from 'react';
 
 function App() {
+  
 
   const colors = {
     lightblue: '#9bbec7',

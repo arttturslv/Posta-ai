@@ -22,6 +22,8 @@ export default function Quadro ({trash, setTrashContent}){
       
       var imageCanvas = canvas.toDataURL();
       localStorage.setItem('img', imageCanvas);
+      localStorage.setItem('formulario', 'img');
+
     }
 
     function limpar() {
@@ -72,6 +74,7 @@ export default function Quadro ({trash, setTrashContent}){
             });
             
 
+            
         function draw(e) {
             if(isDrawing == false) return;
 
@@ -85,8 +88,6 @@ export default function Quadro ({trash, setTrashContent}){
 
           function drawTouch(e) {
             if(isDrawing == false) return;
-
-            console.log(e)
 
             ctx.beginPath();
             ctx.moveTo(lastX, lastY);
