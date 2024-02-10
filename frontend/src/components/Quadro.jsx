@@ -3,6 +3,7 @@ import { useEffect } from "react";
 export default function Quadro ({trash, setTrashContent}){
 
     var isDrawing = false;
+    localStorage.setItem('formulario', 'img');
 
     let lastX = 0;
     let lastY = 0;
@@ -22,7 +23,6 @@ export default function Quadro ({trash, setTrashContent}){
       
       var imageCanvas = canvas.toDataURL();
       localStorage.setItem('img', imageCanvas);
-      localStorage.setItem('formulario', 'img');
 
     }
 

@@ -1,5 +1,5 @@
 import Lixeira from "./Lixeira" 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Formulario({setCards, Quadro, setQuadro}) {
     const [trash, setTrashContent] = useState(false);
@@ -18,6 +18,17 @@ export default function Formulario({setCards, Quadro, setQuadro}) {
       }
   }
 
+       
+  useEffect(()=> {
+    limpar();
+    setTrashContent(false);    
+  }, [trash])
+
+  function limpar() {
+    localStorage.removeItem('Author');
+    localStorage.removeItem('Message');
+    localStorage.removeItem('img');
+}
 
     function onExit() {
       setQuadro(false);
@@ -26,6 +37,8 @@ export default function Formulario({setCards, Quadro, setQuadro}) {
 
     async function postar(author, message, image) {
       onExit();
+
+      if(!message && !image) return;
 
       fetch('http://localhost:3001/post', {
         method: "POST",

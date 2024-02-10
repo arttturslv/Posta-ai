@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 export default function Inputs({trash, setTrashContent}) {
     const [authorHolder, setAuthorHolder] = useState('');
     const [messageHolder, setMessageHolder] = useState('');
+    localStorage.setItem('formulario', 'text');
 
     function handleChange(e) {
         localStorage.setItem(e.target.id, e.target.value);
-        localStorage.setItem('formulario', 'text');
 
 
         setAuthorHolder(localStorage.getItem('Author'));
