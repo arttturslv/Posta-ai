@@ -117,3 +117,16 @@ textarea {
   }  
 
 }
+
+.spin {
+  animation: spin 2s infinite;
+}
+
+@keyframes spin {
+  from {
+      rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
