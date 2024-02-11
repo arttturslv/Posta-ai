@@ -5,7 +5,6 @@ export default function CardPost({note, author, image, color}) {
 
     function share(e) {    
         const title = "Posta Aí!";
-        const url = 'poste-ai-front.vercel.app/';
         const div = e.currentTarget;
         
         // Cria um canvas temporário
@@ -25,7 +24,6 @@ export default function CardPost({note, author, image, color}) {
                 const shareData = {
                     files: [file],
                     title: title,
-                    url: url,
                 };
                 if (navigator.share) {
                     navigator.share(shareData)
