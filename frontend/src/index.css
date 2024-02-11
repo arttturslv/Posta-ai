@@ -94,14 +94,15 @@ textarea {
   touch-action: none;
 }
 
-.cardo:hover div  {
-  animation: up 400ms ease-out;
-  top: -25%;
+.cardo:hover .share  {
+  animation: up 300ms ease-out;
+  top: -20%;
   z-index: -1;
 }
 
 .cardo {
   z-index: 1;
+  
 }
 
 .share {
@@ -113,7 +114,7 @@ textarea {
     top: 0%;
   } 
   to {
-    top: -25%;
+    top: -20%;
   }  
 
 }

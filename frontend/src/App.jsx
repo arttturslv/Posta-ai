@@ -73,7 +73,7 @@ function App() {
   }
 
   return (
-    <div className=" w-full h-[600px] flex items-center flex-col mb-50 ">
+    <div className=" w-full h-[600px]  flex items-center flex-col ">
       <div className='w-[100%] h-12 py-4 pr-3 absolute justify-end gap-2 flex items-center cursor-pointer z-50 max-w-[1200px]'>
           <h4 onClick={() => navegar('https://www.artttur.com/')} className='text-[30px] align-middle hover:text-[#D4874D]'>arttturslv</h4>
           <div onClick={() => navegar('https://github.com/arttturslv')}  className='relative flex items-center justify-center '>
@@ -111,7 +111,7 @@ function App() {
              }
         </div>
 
-        <div id='Panel' className='flex z-[-1] h-[500px] gap-6 flex-wrap max-w-[1300px] pt-[5rem] justify-center'>
+        <div id='Panel' className='flex z-[-1]  gap-6 flex-wrap max-w-[1300px] pt-[5rem] pb-[5rem]  justify-center'>
             {cards==null ?  
             <span>
                   <div className=' w-[200px] h-[200px] bg-jasmine flex-col shadow-4xl flex justify-center text-[#2D2A2A] items-center gap-2'>  

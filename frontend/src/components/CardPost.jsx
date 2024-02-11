@@ -1,42 +1,40 @@
 import { useEffect, useState } from "react"
 import shareSVG from '../assets/share.svg'
-import icon from '../assets/pageIcon.svg'
 
 export default function CardPost({note, author, image, color}) {
 
-    function share(e) {
+    async function share(e) {
         const title = "Posta Aí!";
-        const text = e.target.innerText;
+        const text = "Dá uma olhada nisso!";
         const url = 'poste-ai-front.vercel.app/';
-        
-        if(!e.target.src) {
-            createBlob(e.target.src)
-        } else {
-            sharing(title, text, url, icon)
-        }
-        async function createBlob(base64) {
-            let res =    await fetch(base64)
-            const myBlob = await res.blob()
-
-            sharing(title, text, url, myBlob)   
-        }
-    }
-
-    function sharing(title, text, url, myBlob) {
-        if (navigator.share) {
-            navigator.share({
-                title: title,
-                text: text,
-                url: url,
-                file: myBlob
-            })
-            .then(() => console.log("Compartilhado com sucesso!"))
-            .catch((error) => console.log('Erro:', error));
-        } else {
-            console.log('API não suportada.');
-            navigator.clipboard.writeText("Acesse o Posta Aí! ->"+url);
+    
+        try {
+            const imageFile = await divParaImg(e.target);
+            
+            if (navigator.share) {
+                await navigator.share({
+                    files: [imageFile],
+                    title:title,
+                    text:text,
+                    url:url,
+                });
+                console.log("Compartilhado com sucesso!");
+            } else {
+                console.log('API não suportada.');
+                await navigator.clipboard.writeText("Acesse o Posta Aí! ->" + url);
+            }
+        } catch (error) {
+            console.error('Erro ao compartilhar:', error);
         }
     }
+    
+    function divParaImg(div) {
+        const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="${div.offsetWidth}" height="${div.offsetHeight}">${new XMLSerializer().serializeToString(div.firstChild)}</svg>`;
+        const blob = new Blob([svgString], { type: 'image/svg+xml' });
+        return new File([blob], 'imagem.svg', { type: 'image/svg+xml' });
+    }
+    
+
     
     function handleClick(e) {
         if(wannaShare) {
@@ -55,11 +53,12 @@ export default function CardPost({note, author, image, color}) {
 
     return (
     <div onClick={handleClick} onMouseEnter={handleHover} className='cardo  h-[200px] w-[200px] cursor-pointer'>
-        <div className="share absolute w-[200px] flex-col flex items-center text-center pointer-events-none ">
+
+        <div className="share absolute w-[200px] flex-col flex items-center justify-end text-center pointer-events-none ">
             <img className="w-10" src={shareSVG} alt="" />
         </div>
 
-        <div className={' h-[200px] relative w-[200px] text-[#2D2A2A] gap-2 flex flex-col break-words shadow-2xl px-2 pt-2 '} style={{backgroundColor: color}}>
+        <div className={'inside h-[200px] relative w-[200px] text-[#2D2A2A] gap-2 flex flex-col break-words shadow-2xl px-2 pt-2 '} style={{backgroundColor: color}}>
             {image==null?
                 <><h2 className=" h-[80%] text-[30px] font-light text-wrap max-w-[100%]">{note}</h2>
                 <h6 className="h-[0%] text-[25px] underline text-[#130c16] pr-2 text-right font-medium ">{author}</h6></>
