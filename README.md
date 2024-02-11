@@ -6,10 +6,23 @@ Este projeto evoluiu para uma aplicação web mais robusta, agora utilizando o M
 
 <h3>Status: </h3> 
 <img width="110px" src="https://i.imgur.com/yUlXqQK.png">
+<h4>Features: </h4>
+• Digitar frases nos post-its (ideia inicial) ✔<br>
+• Desenhar nos post-its ✔<br>
+• Compartilhar post-its ✔<br>
+
+<details> 
+  <summary>Próximas </summary>
+  
+ 1. Curtir/denunciar
+ 2. Página de acesso de administrador
+
+</details>
+
 
 <h3> Funcionalidades</h3> 
-Crie novos post-it, inserindo títulos e conteúdos relevantes.<br>
-Visualize todos os post-it disponíveis, com informações claras e organizadas.<br>
+Crie novos post-it, inserindo títulos e conteúdos relevantes, ou desenhe!
+Visualize todos os post-it disponíveis e compartilhe!<br>
 Contribua para a comunidade sem a preocupação de que suas postagens sejam deletadas ou alteradas.<br>
 
 <h3> Tecnologias Utilizadas</h3> 

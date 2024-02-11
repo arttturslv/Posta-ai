@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Quadro ({trash, setTrashContent}){
 
@@ -8,7 +8,7 @@ export default function Quadro ({trash, setTrashContent}){
     let lastX = 0;
     let lastY = 0;
 
-    function calce() {
+    function calce () {
       return visualViewport.width>500? 500: visualViewport.width * 0.9;
      }
      
@@ -100,13 +100,29 @@ export default function Quadro ({trash, setTrashContent}){
 
     }, [])
 
+    const [author, setAuthor] = useState('Autor')
+ 
+    function handleChange(e) {
+      localStorage.setItem(e.target.id, e.target.value);
+
+      setAuthor(localStorage.getItem('Author'));
+      setMessageHolder(localStorage.getItem('Message'));
+  }
+
+
     return (
-    <div className="w-[90vw] z-50 h-[90vw] sm:h-[500px] max-w-[500px] ">
+    <div className="w-[90vw] z-50 h-[100%] sm:h-[550px] flex-col  max-w-[500px] bg-[#8CCBAD] ">
         <canvas
-        className=" absolute z-10 bg-[#8CCBAD]"
+        className="  z-10 bg-[#4e5c55]"
         id="draw"
       >
       </canvas>
-    </div>
+      <div className='w-[100%] absolute h-[40px] top-[80vw] z-50  sm:top-[460px] flex justify-end pr-4 pointer-events-none'>
+        <h6 className=" text-[25px] underline text-[#130c16] pr-2 text-right font-medium ">{author}</h6>
+      </div>
+      <div className="w-[100%] h-[50px] flex relative justify-center opacity-50"> 
+            <input onChange={handleChange} id="Author" type="text" maxLength={14} placeholder={author} className="w-full rounded-none ps-1 md:ps-8 h-[50px] text-[32px] md:text-[42px] placeholder-[#704747] text-[#a55656] focus:outline-none focus:bg-white border-[#6bc5b5] border-4 focus:border-[#4e9084] bg-[#8CCBAD]"  />
+      </div>
+      </div>
     );
 }
