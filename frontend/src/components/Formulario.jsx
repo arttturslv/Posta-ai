@@ -40,7 +40,7 @@ export default function Formulario({setCards, Quadro, setQuadro}) {
 
       if(!message && !image) return;
 
-      fetch('http://localhost:3001/post', {
+      fetch('https://poste-ai.vercel.app/post', {
         method: "POST",
         body: JSON.stringify({
           note: message,

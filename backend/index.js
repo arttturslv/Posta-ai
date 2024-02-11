@@ -13,10 +13,7 @@ app.use(cors())
 app.post("/post", async (req, res) => {
     try {
 
-        if(req.body.image || req.body.note) {
-            console.log("Tudo certo")
-        }
-        else if(!req.body.note) {
+        if(!req.body.note) {
             return res.status(400).send({message: 'Está faltando a mensagem'})
         }
         else if(!req.body.image) {

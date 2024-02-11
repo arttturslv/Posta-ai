@@ -113,7 +113,7 @@ export default function Quadro ({trash, setTrashContent}){
     return (
     <div className="w-[90vw] z-50 h-[100%] sm:h-[550px] flex-col  max-w-[500px] bg-[#8CCBAD] ">
         <canvas
-        className="  z-10 bg-[#4e5c55]"
+        className="  z-10 bg-[#8CCBAD]"
         id="draw"
       >
       </canvas>
