@@ -1,40 +1,58 @@
 import { useEffect, useState } from "react"
 import shareSVG from '../assets/share.svg'
-
+import html2canvas from 'html2canvas';
 export default function CardPost({note, author, image, color}) {
 
-    async function share(e) {
+    function share(e) {    
         const title = "Posta Aí!";
-        const text = "Dá uma olhada nisso!";
         const url = 'poste-ai-front.vercel.app/';
+        const div = e.currentTarget;
+        
+        // Cria um canvas temporário
+        const canvas = document.createElement('canvas');
     
-        try {
-            const imageFile = await divParaImg(e.target);
-            
-            if (navigator.share) {
-                await navigator.share({
-                    files: [imageFile],
-                    title:title,
-                    text:text,
-                    url:url,
-                });
-                console.log("Compartilhado com sucesso!");
-            } else {
-                console.log('API não suportada.');
-                await navigator.clipboard.writeText("Acesse o Posta Aí! ->" + url);
-            }
-        } catch (error) {
-            console.error('Erro ao compartilhar:', error);
-        }
-    }
-    
-    function divParaImg(div) {
-        const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="${div.offsetWidth}" height="${div.offsetHeight}">${new XMLSerializer().serializeToString(div.firstChild)}</svg>`;
-        const blob = new Blob([svgString], { type: 'image/svg+xml' });
-        return new File([blob], 'imagem.svg', { type: 'image/svg+xml' });
-    }
-    
+        // Define as dimensões do canvas iguais às da div
+        canvas.width = div.offsetWidth;
+        canvas.height = div.offsetHeight;
 
+        let lastRotate = div.style.transform;
+
+        div.style.transform = 'rotate(0deg)'; 
+    
+        html2canvas(div).then(function(canvas) {
+            canvas.toBlob(function(blob) {
+                const file = new File([blob], 'imagem.png', { type: 'image/png' });
+                const shareData = {
+                    files: [file],
+                    title: title,
+                    url: url,
+                };
+                if (navigator.share) {
+                    navigator.share(shareData)
+                        .then(() => console.log("Compartilhado com sucesso!"))
+                        .catch((error) => console.log('Erro:', error));
+                } else {
+                    console.log('API não suportada.');
+                    navigator.clipboard.writeText("Acesse o Posta Aí! ->"+url);
+                }
+            });
+        }).catch(function(error) {
+            console.error("Erro ao converter div para canvas:", error);
+        });
+        
+
+        div.style.transform = 'rotate('+lastRotate+'deg)'; 
+
+        
+     
+
+    }
+    
+  
+    
+    
+    
+    
     
     function handleClick(e) {
         if(wannaShare) {
