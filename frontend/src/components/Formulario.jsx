@@ -39,8 +39,6 @@ export default function Formulario({setCards, Quadro, setQuadro}) {
     async function postar(author, message, image) {
       onExit();
 
-      console.log(message + "\n"+author+"\n"+image);
-
       if(!message && !image) return;
 
       fetch('https://poste-ai.vercel.app/post/', {

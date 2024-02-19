@@ -13,8 +13,8 @@ app.use(cors())
 app.post("/post", async (req, res) => {
     try {
 
-        if(!req.body.note || !req.body.image) {
-            return res.status(400).send({message: 'Está faltando a mensagem'})
+        if(!req.body.note && !req.body.image) {
+            return res.status(405).send({message: 'A requisição não possui imagem e nem mensagem.'})
         }
 
         const newPostIt = {
@@ -27,9 +27,13 @@ app.post("/post", async (req, res) => {
         return res.status(201).send(post);
 
     } catch (err) {
-        res.status(500).send({message: err.message})
+        console.error("Erro ao processar solicitação POST:", err);
+        res.status(500).send({ message: "Ocorreu um erro durante o processamento da solicitação." });
     }
 })
+
+
+
 
 app.get("/:postRendered", async(req, res) => {
     try {
