@@ -43,15 +43,15 @@ h1, h2 {
 
 
 /* uses js to add and remove class to start and end an animation */
-.tampaAnim {
-  animation: tampa 200ms ease-out ;
+.lidAnimation {
+  animation: lidGoingUp 200ms ease-out ;
   animation-iteration-count: 1;
   top: 20%;  
   rotate: -20deg;
   left: 10%;
 }
 
-@keyframes tampa {
+@keyframes lidGoingUp {
   0% {
     top: 35%;  
     rotate: 0deg;
@@ -64,14 +64,14 @@ h1, h2 {
   }
 } 
 
-.trash {
-  animation: trash 300ms ease-in-out;
+.binAnimation {
+  animation: trashGoingDown 300ms ease-in-out;
 }
-.trashBin {
+.binNewColor {
   background-color: crimson;
 }
 
-@keyframes trash {
+@keyframes trashGoingDown {
   0% {
    color: #2D2A2A;
     top: 0;

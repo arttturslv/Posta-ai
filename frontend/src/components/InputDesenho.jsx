@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Quadro ({trash, setTrashContent}){
+export default function InputDesenho ({trash, setTrashContent}){
 
     var isDrawing = false;
     localStorage.setItem('formulario', 'img');

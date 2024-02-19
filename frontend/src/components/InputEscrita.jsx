@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Inputs({trash, setTrashContent}) {
+export default function InputEscrita({trash, setTrashContent}) {
     const [authorHolder, setAuthorHolder] = useState('');
     const [messageHolder, setMessageHolder] = useState('');
     localStorage.setItem('formulario', 'text');

@@ -1,12 +1,12 @@
 import './index.css'
-import imgChoiceDesenho from './assets/desenhar.svg';
-import imgChoiceEscrita from './assets/escrever.svg';
-import github from './assets/github.svg';
+import iconQueroDesenhar from './assets/queroDesenhar.svg';
+import iconQueroEscrever from './assets/queroEscrever.svg';
+import iconGithub from './assets/github.svg';
 
-import CardPost from './components/CardPost';
+import PostIt from './components/PostIt';
 import Formulario from './components/Formulario';
-import Quadro from './components/Quadro';
-import Inputs from './components/Inputs';
+import Quadro from './components/InputDesenho';
+import Inputs from './components/InputEscrita';
 
 import { useState, useEffect } from 'react';
 
@@ -77,7 +77,7 @@ function App() {
       <div className='w-[100%] h-12 py-4 pr-3 absolute justify-end gap-2 flex items-center cursor-pointer z-50 max-w-[1200px]'>
           <h4 onClick={() => navegar('https://www.artttur.com/')} className='text-[30px] align-middle hover:text-[#D4874D]'>arttturslv</h4>
           <div onClick={() => navegar('https://github.com/arttturslv')}  className='relative flex items-center justify-center '>
-            <img className='w-10 h-10  hover:backdrop-filter-none ' src={github} alt="" />
+            <img className='w-10 h-10  hover:backdrop-filter-none ' src={iconGithub} alt="" />
             <div className=' bg-[#ff892f] w-8 h-8 absolute rounded-full opacity-0 hover:opacity-50'></div>
           </div>
       </div>
@@ -97,8 +97,8 @@ function App() {
           <div className=' flex justify-center flex-col'> 
             <h3 className='text-[52px] text-center'>Faça sua escolha:</h3>
             <span className='flex flex-row pl-5'>
-            <img onClick={() => open(setInputs)} src={imgChoiceEscrita} alt="" className=' hover:-rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
-            <img onClick={() => open(setQuadro)} src={imgChoiceDesenho} alt="" className=' hover:rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
+            <img onClick={() => open(setInputs)} src={iconQueroEscrever} alt="" className=' hover:-rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
+            <img onClick={() => open(setQuadro)} src={iconQueroDesenhar} alt="" className=' hover:rotate-12 duration-300 cursor-pointer w-[40vw] md:max-w-[250px]'/>
             </span>
           </div>
 
@@ -122,7 +122,7 @@ function App() {
             </span>
             :
             cards.map((card, index) => (
-              <CardPost
+              <PostIt
                 note={card.note}
                 author={card.author}
                 key={card.index}

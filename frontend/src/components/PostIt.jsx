@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import shareSVG from '../assets/share.svg'
 import html2canvas from 'html2canvas';
-export default function CardPost({note, author, image, color}) {
+export default function PostIt({note, author, image, color}) {
 
     function share(e) {    
         const title = "Posta Aí!";
