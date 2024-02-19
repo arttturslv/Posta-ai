@@ -38,7 +38,7 @@ export default function Inputs({trash, setTrashContent}) {
         </div>
         <div> 
             <h5 className="text-[42px] md:text-[52px]">*Mensagem:</h5>
-            <textarea onChange={handleChange} id="Message" type="text" maxLength={120} className=" w-full ps-1 md:ps-8 py-2 overflow-y-auto  text-[32px] md:text-[42px] placeholder-[#704747] focus:outline-none focus:bg-white border-[#DC9C64] border-4 focus:border-[#DC9C64] rounded-lg bg-[#E78B61]" placeholder={messageHolder} />
+            <textarea onChange={handleChange} id="Message" type="text" maxLength={120} className=" w-full ps-1 md:ps-8 py-2 overflow-y-auto resize-none text-[32px] md:text-[42px] placeholder-[#704747] focus:outline-none focus:bg-white border-[#DC9C64] border-4 focus:border-[#DC9C64] rounded-lg bg-[#E78B61]" placeholder={messageHolder} />
         </div>
     </div>
     )

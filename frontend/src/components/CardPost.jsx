@@ -68,9 +68,9 @@ export default function CardPost({note, author, image, color}) {
     }
 
     return (
-    <div onClick={handleClick} onMouseEnter={handleHover} className='cardo  h-[200px] w-[200px] cursor-pointer'>
+    <div onClick={handleClick} onMouseEnter={handleHover} className='cardo group h-[200px] w-[200px] cursor-pointer'>
 
-        <div className="share absolute w-[200px] flex-col flex items-center justify-end text-center pointer-events-none ">
+        <div className="share group-hover:animate-up group-hover:top-[-20%] group-hover:z-1 z-0 absolute w-[200px] flex-col flex items-center justify-end text-center pointer-events-none ">
             <img className="w-10" src={shareSVG} alt="" />
         </div>
 

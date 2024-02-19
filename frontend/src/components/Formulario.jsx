@@ -61,7 +61,7 @@ export default function Formulario({setCards, Quadro, setQuadro}) {
       }
 
     return (
-      <div  id='form' className="w-full z-50 flex h-full backdrop-blur-sm absolute justify-center top-[270px] ">
+      <div  id='form' className="w-full z-50 flex h-full backdrop-blur-sm absolute justify-center top-[270px] touch-none	 ">
           <div className={'w-[90vw]  max-w-[500px] gap-4 flex flex-col shadow-2xl absolute '}>
           
           <Quadro trash={trash} setTrashContent={setTrashContent}/>
