@@ -106,7 +106,6 @@ export default function InputDesenho ({trash, setTrashContent}){
       localStorage.setItem(e.target.id, e.target.value);
 
       setAuthor(localStorage.getItem('Author'));
-      setMessageHolder(localStorage.getItem('Message'));
   }
 
 
