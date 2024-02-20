@@ -64,7 +64,9 @@ function App() {
       top: 100,
       behavior: 'smooth'
     });
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = 'auto'
+    document.body.style.touchAction = 'none'
+
     set(true);
   }
 
@@ -111,7 +113,7 @@ function App() {
              }
         </div>
 
-        <div id='Panel' className='flex z-[-1]  gap-6 flex-wrap max-w-[1300px] pt-[5rem] pb-[5rem]  justify-center'>
+        <div id='Panel' className='flex z-[-1] gap-6 flex-wrap max-w-[1300px] pt-[6rem] pb-[5rem]  justify-center'>
             {cards==null ?  
             <span>
                   <div className=' w-[200px] h-[200px] bg-jasmine flex-col shadow-4xl flex justify-center text-[#2D2A2A] items-center gap-2'>  

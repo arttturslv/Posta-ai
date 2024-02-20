@@ -29,7 +29,7 @@ export default {
           top: "0%"
         },
         "100%": {
-          top: "-20%"
+          top: "-60px"
         }  
       },
       spina: {

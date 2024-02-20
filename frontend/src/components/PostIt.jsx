@@ -68,15 +68,16 @@ export default function PostIt({note, author, image, color}) {
     }
 
     return (
-    <div onClick={handleClick} onMouseEnter={handleHover} className='cardo group h-[200px] w-[200px] cursor-pointer'>
+    <div onClick={handleClick} onMouseEnter={handleHover} className='cardo group sm:w-[200px] w-[150px] sm:h-[200px] h-[150px] cursor-pointer'>
 
-        <div className="share group-hover:animate-up group-hover:top-[-20%] group-hover:z-1 z-0 absolute w-[200px] flex-col flex items-center justify-end text-center pointer-events-none ">
+        <div className="share group-hover:animate-up group-hover:top-[-60px] group-hover:z-1 z-0 absolute sm:w-[200px] w-[150px] flex-col flex items-center justify-end text-center pointer-events-none ">
+            <h3 className="sm:hidden drop-shadow-2xl shadow-black"> Clique novamente para compartilhar!</h3>
             <img className="w-10" src={shareSVG} alt="" />
         </div>
 
-        <div className={'inside h-[200px] relative w-[200px] text-[#2D2A2A] gap-2 flex flex-col break-words shadow-2xl px-2 pt-2 '} style={{backgroundColor: color}}>
+        <div className={'inside sm:h-[200px] h-[150px] relative sm:w-[200px] w-[150px] text-[#2D2A2A] gap-2 flex flex-col break-words shadow-2xl px-2 pt-2 '} style={{backgroundColor: color}}>
             {image==null?
-                <><h2 className=" h-[80%] text-[30px] font-light text-wrap max-w-[100%]">{note}</h2>
+                <><h2 className=" h-[80%] text-[23px] sm:text-[30px] font-light text-wrap max-w-[100%] relative">{note}</h2>
                 <h6 className="h-[0%] text-[25px] underline text-[#130c16] pr-2 text-right font-medium ">{author}</h6></>
             : 
                 <><img className="" src={image} alt=""/>
