@@ -45,10 +45,8 @@ function App() {
         } 
       }).then((response) => response.json())
       .then((json) => { 
-        setCards(json.data)
-const reversedCards = cards.toReversed();
-setCards(reversedCards);
-        setPostRenderizados(postRenderizados+json.skipValue);
+        
+setCards(json.data.slice().reverse());        setPostRenderizados(postRenderizados+json.skipValue);
       });
     }
 
