@@ -123,7 +123,7 @@ function App() {
               </div>
             </span>
             :
-            cards.map((card, index) => (
+            cards.reverse().map((card, index) => (
               <PostIt
                 note={card.note}
                 author={card.author}
