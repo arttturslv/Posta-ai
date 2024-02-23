@@ -37,7 +37,7 @@ app.post("/post", async (req, res) => {
 
 app.get("/:postRendered", async(req, res) => {
     try {
-        const limitReqPost = 30; //vai ir no maximo 30
+        const limitReqPost = 150; //vai ir no maximo 30
         const {postRendered} = req.params; //quantos já foram renderizados
         const renderSkip = parseInt(postRendered);
 
