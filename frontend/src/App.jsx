@@ -46,6 +46,7 @@ function App() {
       }).then((response) => response.json())
       .then((json) => { 
         setCards(json.data)
+setCards(cards.reverse())
         setPostRenderizados(postRenderizados+json.skipValue);
       });
     }
@@ -123,7 +124,7 @@ function App() {
               </div>
             </span>
             :
-            cards.reverse().map((card, index) => (
+            cards.map((card, index) => (
               <PostIt
                 note={card.note}
                 author={card.author}
