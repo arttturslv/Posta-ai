@@ -32,7 +32,7 @@ export default {
           top: "-60px"
         }  
       },
-      spina: {
+      spinning: {
         "0%": {
             rotate: "0deg",
         },
@@ -44,7 +44,7 @@ export default {
     animation : {
       trash: "trash 300ms ease-in-out",
       up: "up 300ms ease-out",
-      spina: "spina 2s infinite",
+      spinning: "spinning 2s infinite",
     }
     
   },

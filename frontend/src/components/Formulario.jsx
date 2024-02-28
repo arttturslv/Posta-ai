@@ -2,9 +2,15 @@ import Lixeira from "./Lixeira"
 import { useState, useEffect } from "react";
 
 export default function Formulario({setCards, Quadro, setQuadro}) {
-    const [trash, setTrashContent] = useState(false);
+    
+  const [trash, setTrashContent] = useState(false);
 
-    function onSend() {
+  useEffect(()=> {
+    limpar();
+    setTrashContent(false);    
+  }, [trash])
+
+  function onSend() {
       if(localStorage.getItem('formulario') == 'img') {
         const author = localStorage.getItem('Author');
         const message = null;
@@ -15,53 +21,45 @@ export default function Formulario({setCards, Quadro, setQuadro}) {
         const message = localStorage.getItem('Message');
         const image = null;
         postar(author, message, image);
-
       }
   }
-
-       
-  useEffect(()=> {
-    limpar();
-    setTrashContent(false);    
-  }, [trash])
 
   function limpar() {
     localStorage.removeItem('Author');
     localStorage.removeItem('Message');
     localStorage.removeItem('img');
-}
+  }
 
-    function onExit() {
-      setQuadro(false);
-      document.body.style.overflow = 'auto'
-      document.body.style.touchAction = 'auto'
+  function onExit() {
+    setQuadro(false);
+    document.body.style.overflow = 'auto'
+    document.body.style.touchAction = 'auto'
+  }
 
+  async function postar(author, message, image) {
+    onExit();
+
+    if(!message && !image) return;
+
+    fetch('http://localhost:3001/post/', {
+      method: "POST",
+      body: JSON.stringify({
+        note: message,
+        author: author,
+        image: image
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    } 
+    }).then((response) => response.json())
+    .then((json) => { 
+      setCards((prevCards) => [
+        ...prevCards, {
+          note: json.note, author:json.author, image:json.image
+        }
+      ])
+    });
     }
-
-    async function postar(author, message, image) {
-      onExit();
-
-      if(!message && !image) return;
-
-      fetch('https://poste-ai.vercel.app/post/', {
-        method: "POST",
-        body: JSON.stringify({
-          note: message,
-          author: author,
-          image: image
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-     } 
-      }).then((response) => response.json())
-      .then((json) => { 
-        setCards((prevCards) => [
-          ...prevCards, {
-            note: json.note, author:json.author, image:json.image
-          }
-        ])
-      });
-      }
 
     return (
       <div  id='form' className="w-full z-50 flex h-full backdrop-blur-sm absolute justify-center top-[270px] ">

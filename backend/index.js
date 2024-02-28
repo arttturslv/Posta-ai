@@ -32,23 +32,27 @@ app.post("/post", async (req, res) => {
     }
 })
 
-
-
-
-app.get("/:postRendered", async(req, res) => {
+app.get("/:lastPostID", async(req, res) => {
     try {
-        const limitReqPost = 150; //vai ir no maximo 30
-        const {postRendered} = req.params; //quantos já foram renderizados
-        const renderSkip = parseInt(postRendered);
+        const {lastPostID} = req.params; //Recebe o ultimo post
+        const reqQuantity = 50; //Quantos são enviados por requisição
+        var posts;
 
-        const posts = await PostIt.find({}).skip(renderSkip).limit(limitReqPost);
+        if(lastPostID=='null') {
+          posts = await PostIt.find({}).limit(reqQuantity).sort({'_id': -1});
+        } else {
+          posts = await PostIt.find({}).limit(reqQuantity).sort({'_id': -1}).where('_id').lt(lastPostID);
+        }
 
-        let sum = renderSkip+limitReqPost;
+        if(posts.length != 0) {
+            return res.status(200).json({
+                data:posts
+            });
+        } else {
+            res.status(204).send({message: "Limite atingido"});
+        }
 
-        return res.status(200).json({
-            skipValue: limitReqPost, //para atualizar o valor dos renderizados
-            data:posts,
-        });
+   
     } catch (err) {
         res.status(500).send({message: err.message});
     }
@@ -57,7 +61,7 @@ app.get("/:postRendered", async(req, res) => {
 mongoose.connect(mongoDBURL)
     .then(() =>
         app.listen(PORT, () => {
-            console.log("Server is on 🔥 - ")
+            console.log("Server is on 🔥")
         })
     ).catch((err)=> {
         console.log(err);
@@ -65,7 +69,7 @@ mongoose.connect(mongoDBURL)
 
 app.get('/', (req, res) => {
     console.log(req);
-    res.status(201).send('Hello brasil!🏳')
-});
+    const mensagem = 'Você não queria ir para: <a href="https://posta-ai.vercel.app/">https://posta-ai.vercel.app/</a>?';
+    res.status(201).send(mensagem);});
 
 export default app;
