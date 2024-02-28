@@ -59,7 +59,7 @@ function App() {
     };
 
     try {
-      const response = await fetch(`http://localhost:3001/${lastID}`, requestOptions)
+      const response = await fetch(`https://poste-ai.vercel.app/${lastID}`, requestOptions)
       if(!response.ok) {
         throw new Error('Erro ao recuperar dados da API: '+response.status)
       } else if (response.status == 204) {
