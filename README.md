@@ -9,8 +9,8 @@ A ideia inicial surgiu ao realizar um trabalho de faculdade, então o projeto ev
 <h4>Features: </h4>
 • Criar post-its com texto (ideia inicial)<br>
 • Criar post-its com desenhos<br>
-• Visualizar post-its de toda comunidade ✔<br>
-• Compartilhar post-its ✔<br>
+• Visualizar post-its de toda comunidade<br>
+• Compartilhar post-its<br>
 
 
 <h3> Tecnologias Utilizadas</h3> 
